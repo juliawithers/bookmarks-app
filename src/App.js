@@ -6,31 +6,7 @@ import Nav from './Nav/Nav';
 import config from './config';
 import './App.css';
 import BookmarksContext from './BookmarksContext'
-import Rating from './Rating/Rating'
-
-// const bookmarks = [
-  // {
-  //   id: 0,
-  //   title: 'Google',
-  //   url: 'http://www.google.com',
-  //   rating: '3',
-  //   desc: 'Internet-related services and products.'
-  // },
-  // {
-  //   id: 1,
-  //   title: 'Thinkful',
-  //   url: 'http://www.thinkful.com',
-  //   rating: '5',
-  //   desc: '1-on-1 learning to accelerate your way to a new high-growth tech career!'
-  // },
-  // {
-  //   id: 2,
-  //   title: 'Github',
-  //   url: 'http://www.github.com',
-  //   rating: '4',
-  //   desc: 'brings together the world\'s largest community of developers.'
-  // }
-// ];
+// import Rating from './Rating/Rating'
 
 class App extends Component {
   state = {
@@ -78,7 +54,6 @@ class App extends Component {
   }
 
   render() {
-    // const { bookmarks } = this.state
     const contextValue = {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
@@ -93,23 +68,12 @@ class App extends Component {
           <div className='content' aria-live='polite'>  
               <Route
                 path='/add-bookmark'
-                component={AddBookmark}/>
-                {/* render={({ history }) => {
-                  return <AddBookmark
-                    onAddBookmark={this.addBookmark}
-                    onClickCancel={() => history.push('/')}
-                  />
-                }}
-              /> */}
+                component={AddBookmark}/>           
               <Route
                 exact
                 path='/'
                 component={BookmarkList}/>
-                {/* render={({ history }) => {
-                  return <BookmarkList bookmarks={bookmarks} />
-                }}
-              /> */}
-            </div>
+          </div>
         </BookmarksContext.Provider>
        </main>
     );

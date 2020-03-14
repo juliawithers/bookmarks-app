@@ -21,13 +21,13 @@ Rating.propTypes={
         .isRequired
 };
 
-Rating.propTupes={
+Rating.propTypes={
   value: (props,propName,componentName)=>{
     // first get the value of the prop
     const prop= props[propName];
     // since we want to make this required let us check that first
     if(!prop){
-      return new Error(`${propName} is required in ${ComponentName}. Validation Failed`);
+      return new Error(`${propName} is required in ${componentName}. Validation Failed`);
     }
 
     // the prop has a value let's check the type

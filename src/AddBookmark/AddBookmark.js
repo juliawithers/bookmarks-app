@@ -11,9 +11,7 @@ const Required = () => (
 )
 
 class AddBookmark extends Component {
-  // static defaultProps = {
-  //   onAddBookmark: () => {}
-  // };
+
   static contextType = BookmarksContext;
   state = {
     error: null,
@@ -178,6 +176,13 @@ AddBookmark.defaultProps={
   rating:1,
   description: ""
 }
+
+AddBookmark.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+  description: PropTypes.string
+};
 
 // export default withRouter(AddBookmark);
 export default AddBookmark;
