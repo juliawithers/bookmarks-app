@@ -1,17 +1,20 @@
 import React, { Component } from  'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import config from '../config'
 import './AddBookmark.css';
+import BookmarksContext from '../BookmarksContext'
+import PropTypes from 'prop-types'
+
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>
 )
 
 class AddBookmark extends Component {
-  static defaultProps = {
-    onAddBookmark: () => {}
-  };
-
+  // static defaultProps = {
+  //   onAddBookmark: () => {}
+  // };
+  static contextType = BookmarksContext;
   state = {
     error: null,
   };
@@ -50,17 +53,22 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
+        this.context.addBookmark(data)
         this.props.history.push('/')
-        this.props.onAddBookmark(data)
+        // this.props.onAddBookmark(data)
       })
       .catch(error => {
         this.setState({ error })
       })
   }
 
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  }
+
   render() {
     const { error } = this.state
-    const { onClickCancel } = this.props
+    // const { onClickCancel } = this.props
     return (
       <section className='AddBookmark'>
         <h2>Create a bookmark</h2>
@@ -125,7 +133,8 @@ class AddBookmark extends Component {
             />
           </div>
           <div className='AddBookmark__buttons'>
-            <button type='button' onClick={onClickCancel}>
+            {/* <button type='button' onClick={onClickCancel}> */}
+            <button type='button' onClick={this.handleClickCancel}>
               Cancel
             </button>
             {' '}
@@ -139,4 +148,36 @@ class AddBookmark extends Component {
   }
 }
 
-export default withRouter(AddBookmark);
+AddBookmark.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: (props, propName, componentName) => {
+    // get the value of the prop
+    const prop = props[propName];
+
+    // do the isRequired check
+    if(!prop) {
+      return new Error(`${propName} is required in ${componentName}. Validation Failed`);
+    }
+
+    // check the type
+    if (typeof prop != 'string') {
+      return new Error(`Invalid prop, ${propName} is expected to be a string in ${componentName}. ${typeof prop} found.`);
+    }
+
+    // do the custom check here
+    // using a simple regex
+    if (prop.length < 5 || !prop.match(new RegExp(/^https?:\/\//))) {
+      return new Error(`Invalid prop, ${propName} must be min length 5 and begin http(s)://. Validation Failed.`);
+    }
+  },
+  rating: PropTypes.number,
+  description: PropTypes.string
+};
+
+AddBookmark.defaultProps={
+  rating:1,
+  description: ""
+}
+
+// export default withRouter(AddBookmark);
+export default AddBookmark;
