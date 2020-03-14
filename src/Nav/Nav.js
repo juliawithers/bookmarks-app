@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Nav(props) {
   return (
     <nav className='Nav'>
+<<<<<<< HEAD
       {/* <button onClick={() => props.clickPage('list')}>
         Bookmark List
       </button> */}
@@ -18,6 +19,15 @@ export default function Nav(props) {
         Add Bookmark
       </Link>
 
+=======
+      <Link to={'/'}>
+        Bookmark List
+      </Link>
+      {' '}
+      <Link to={'/add-bookmark'}>
+        Add Bookmark
+      </Link>
+>>>>>>> context-startingpoint
     </nav>
   );
 }
