@@ -1,5 +1,5 @@
 {
-  "name": "bookmarks",
+  "name": "bookmarks-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,9 +11,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "set CI=true react-scripts test --colors",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "now --prod ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
