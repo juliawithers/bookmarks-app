@@ -53,7 +53,6 @@ export default function BookmarkItem(props) {
           <div className='BookmarkItem__buttons'>
             <button
               className='BookmarkItem__description'
-              // onClick={() => props.onClickDelete(props.id)}
               onClick={() => {
                 deleteBookmarkRequest(
                   props.id,
@@ -62,6 +61,14 @@ export default function BookmarkItem(props) {
               }}
             >
               Delete
+            </button>
+            <button
+              className='edit-bookmark'
+              onClick={() => {
+                history.push(`/edit/${props.id}`)
+              }}
+            >
+              Edit Bookmark
             </button>
           </div>
         </li>   
