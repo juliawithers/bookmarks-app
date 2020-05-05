@@ -7,7 +7,7 @@ import config from './config';
 import './App.css';
 import BookmarksContext from './BookmarksContext'
 // import Rating from './Rating/Rating'
-
+// hello clone
 class App extends Component {
   state = {
     // bookmarks,
